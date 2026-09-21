@@ -1,0 +1,19 @@
+name: social-clip
+domain: video
+description: Vertical resize + h264 mp4 for social stories
+params:
+  width:
+    type: int
+    default: 1080
+  height:
+    type: int
+    default: 1920
+steps:
+  - resize:
+      width: "{{ width }}"
+      height: "{{ height }}"
+      fit: cover
+  - transcode:
+      format: mp4
+      codec: libx264
+      audio_codec: aac

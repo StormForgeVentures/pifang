@@ -1,0 +1,73 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+.pifang-tmp-*
+.pifang-*/
+
+# secrets / local env
+.env
+.env.*
+!.env.example
+
+# tooling caches
+.mypy_cache/
+.ruff_cache/
+.tox/
+
+# agent / roster / Cursor — local only, not part of the OSS package
+.claude/
+.cursor/
+.roster/
+.roster-backup*/
+.roster-manifest.json
+handoff/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+
+# roster-generated (agent IP — regenerate with `roster deploy`, don't commit)
+**/.claude/agents/
+**/.claude/skills/
+**/.claude/references/
+**/.agents/skills/
+**/.cursor/rules/pm.mdc
+**/.cursor/rules/software-architect.mdc
+**/.cursor/rules/pkg-architect.mdc
+**/.cursor/rules/ai-architect.mdc
+**/.cursor/rules/brand-strategist.mdc
+**/.cursor/rules/copywriter.mdc
+**/.cursor/rules/designer.mdc
+**/.cursor/rules/developer.mdc
+**/.cursor/rules/pkg-developer.mdc
+**/.cursor/rules/devops.mdc
+**/.cursor/rules/pkg-devops.mdc
+**/.cursor/rules/server-admin.mdc
+**/.cursor/rules/docs-writer.mdc
+**/.cursor/rules/qa-reviewer.mdc
+**/.cursor/rules/experience-reviewer.mdc
+**/.cursor/rules/security-reviewer.mdc
+**/.cursor/rules/art-director.mdc
+**/.opencode/agents/
+**/opencode.json
+**/.hermes/agents/
+**/.hermes/README.md
+**/.codex/
+**/.zcode/agents/
+**/.grok/agents/
+**/.pi/agents/
+**/.kimi-code/agents/
+**/.roster-manifest.json
+**/.cadre-manifest.json
+
+# quickstart.py outputs
+examples/fixtures/avatar.webp
+examples/fixtures/out.webp
+examples/fixtures/batch-out/

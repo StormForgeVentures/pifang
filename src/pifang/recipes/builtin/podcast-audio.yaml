@@ -1,0 +1,15 @@
+name: podcast-audio
+domain: video
+description: Extract audio and normalize loudness to mp3
+params:
+  format:
+    type: string
+    default: mp3
+  target_lufs:
+    type: float
+    default: -16
+steps:
+  - extract-audio:
+      format: "{{ format }}"
+  - normalize-audio:
+      target_lufs: "{{ target_lufs }}"

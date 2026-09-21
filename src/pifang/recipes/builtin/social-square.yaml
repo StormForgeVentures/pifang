@@ -1,0 +1,20 @@
+name: social-square
+domain: image
+description: Square crop and resize for social posts
+params:
+  size:
+    type: int
+    default: 1080
+  format:
+    type: string
+    default: webp
+steps:
+  - crop-square:
+      anchor: center
+  - resize:
+      width: "{{ size }}"
+      height: "{{ size }}"
+      fit: cover
+  - convert:
+      format: "{{ format }}"
+      quality: 85

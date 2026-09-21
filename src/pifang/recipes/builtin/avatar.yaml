@@ -1,0 +1,17 @@
+name: avatar
+domain: image
+description: Center square crop, resize, export webp
+params:
+  size:
+    type: int
+    default: 256
+steps:
+  - crop-square:
+      anchor: center
+  - resize:
+      width: "{{ size }}"
+      height: "{{ size }}"
+      fit: cover
+  - convert:
+      format: webp
+      quality: 85

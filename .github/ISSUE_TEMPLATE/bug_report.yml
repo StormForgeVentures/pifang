@@ -1,0 +1,37 @@
+name: Bug report
+description: Something is broken or surprising
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for filing a bug. Include repro steps an agent or human can run.
+  - type: textarea
+    id: repro
+    attributes:
+      label: Repro
+      description: Exact commands and inputs
+      placeholder: |
+        pifang doc convert paper.pdf -o ./out/ --json
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual
+      description: stdout/stderr, exit code, JSON error envelope
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Environment
+      description: "`pifang version`, OS, Python, relevant extras"
+    validations:
+      required: true
