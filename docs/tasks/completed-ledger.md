@@ -30,6 +30,12 @@ Tickets that drew a number from this repo's sequence.
 
 | ID | Type | Slug | Closed | Closing SHA | Submitter | Resolution |
 |---|---|---|---|---|---|---|
+| issue-002 | issue | doc-ingest-fails-on-filenames-with-spaces | 2026-09-21 | 74e27dac77528a80f151324de093803da36b7107 |  | doc-ingest-fails-on-filenames-with-spaces |
+| issue-003 | issue | ingest-manifest-overwritten-across-runs | 2026-09-21 | 74e27dac77528a80f151324de093803da36b7107 |  | ingest-manifest-overwritten-across-runs |
+| prd-001 | prd | pifang-v01 | 2026-09-21 | 74e27dac77528a80f151324de093803da36b7107 |  | pifang-v01 |
+| prd-002 | prd | pifang-v03 | 2026-09-21 | 74e27dac77528a80f151324de093803da36b7107 |  | pifang-v03 |
+| prd-003 | prd | pifang-v04-transcribe | 2026-09-21 | 74e27dac77528a80f151324de093803da36b7107 |  | pifang-v04-transcribe |
+| prd-004 | prd | pifang-v05-release-hardening | 2026-09-21 | 74e27dac77528a80f151324de093803da36b7107 |  | pifang-v05-release-hardening |
 
 ## Legacy — pre-sequence work
 
