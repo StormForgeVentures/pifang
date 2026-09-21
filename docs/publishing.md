@@ -24,7 +24,7 @@ twine check dist/*
 ## Release flow
 
 1. Update `CHANGELOG.md` and bump `version` in `pyproject.toml` if needed.
-2. Tag `vX.Y.Z` and push, **or** run Actions → **Publish** → `workflow_dispatch`.
+2. Tag `vX.Y.Z` and push. The `pypi` GitHub Environment only deploys from tags matching `v*`, so a `workflow_dispatch` run from a branch is rejected — this is deliberate: nothing publishes without an explicit version tag.
 3. Workflow builds the sdist/wheel and publishes via OIDC (see [`.github/workflows/publish.yml`](../.github/workflows/publish.yml)).
 
 ## Verify

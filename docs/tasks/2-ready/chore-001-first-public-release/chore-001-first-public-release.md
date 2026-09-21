@@ -26,11 +26,11 @@ secret scan, history squash) is done; what remains needs a human with GitHub/PyP
 ## PyPI
 
 - [ ] Name `pifang` still free (404 on pypi.org/pypi/pifang as of 2026-09-21)
-- [ ] Add a **pending** Trusted Publisher on pypi.org (account → Publishing) — owner `StormForgeVentures`, repo `pifang`, workflow `publish.yml`, environment `pypi`. The project is created by the first publish; nothing to pre-create beyond this.
-- [ ] Create GitHub Environment `pypi` (optional required reviewer)
+- [x] Add a **pending** Trusted Publisher (done 2026-09-21) on pypi.org (account → Publishing) — owner `StormForgeVentures`, repo `pifang`, workflow `publish.yml`, environment `pypi`. The project is created by the first publish; nothing to pre-create beyond this.
+- [x] Create GitHub Environment `pypi` — done 2026-09-21, deployment rule: tags `v*` only
 - [ ] Maintainer 2FA enabled on PyPI
 - [ ] Set the `[0.1.0]` date in `CHANGELOG.md` to the release day, commit
-- [ ] Tag `v0.1.0` and push, or Actions → Publish → `workflow_dispatch`
+- [ ] Tag `v0.1.0` and push (`git tag v0.1.0 && git push origin v0.1.0`). The `pypi` environment deploys only from `v*` tags; `workflow_dispatch` from a branch is rejected by design.
 
 ## Smoke after publish
 

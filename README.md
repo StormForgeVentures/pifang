@@ -67,6 +67,20 @@ pifang transcribe clip.mp4 -o ./out/            # .transcript.json + .srt
 
 Output is plain text by default; add `--json` (before or after the subcommand) for one JSON object on stdout — agents should always pass it. Exit codes: 0 ok · 1 validation · 2 missing dep · 3 processing · 4 partial batch.
 
+```console
+$ pifang image avatar photo.jpg -o out/photo.webp --size 512
+OK image.avatar -> out/photo.webp
+
+$ pifang image avatar photo.jpg -o out/photo.webp --size 512 --json
+{"ok": true, "command": "image.avatar", "input": "/abs/photo.jpg", "output": "/abs/out/photo.webp",
+ "result": {"width": 512, "height": 512, "format": "webp", "bytes": 550}, "duration_ms": 18}
+
+$ pifang image avatar missing.jpg -o out/x.webp --json; echo "exit=$?"
+{"ok": false, "error_code": "FILE_NOT_FOUND", "message": "Input file not found: missing.jpg",
+ "exit_code": 1, "recovery": {"hint": "Check input path"}}
+exit=1
+```
+
 ## For AI agents
 
 Paste **[docs/agents-blurb.md](https://github.com/StormForgeVentures/pifang/blob/main/docs/agents-blurb.md)** into your project’s `AGENTS.md` / `CLAUDE.md`.
