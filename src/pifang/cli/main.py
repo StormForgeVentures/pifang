@@ -10,8 +10,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Annotated, Any, Callable, Optional, TypeVar
 
-import click
 import typer
+
+try:  # typer >= 0.27 vendors click; usage errors are raised from the vendored module
+    from typer._click import exceptions as click_exceptions
+except ImportError:  # older typer: plain click
+    from click import exceptions as click_exceptions
 
 from pifang import __version__
 from pifang.core.batch import BatchSpec, batch_run
@@ -223,8 +227,6 @@ def safe_command(func: F) -> F:
         try:
             return func(ctx, *args, **kwargs)
         except typer.Exit:
-            raise
-        except click.exceptions.Exit:
             raise
         except PifangError as exc:
             _handle_error(ctx, exc)
@@ -1553,9 +1555,9 @@ def run() -> None:
         result = app(standalone_mode=False)
         if isinstance(result, int):
             raise SystemExit(result)
-    except click.exceptions.Exit as exc:
+    except typer.Exit as exc:
         raise SystemExit(exc.exit_code) from None
-    except click.exceptions.UsageError as exc:
+    except click_exceptions.UsageError as exc:
         msg = exc.format_message() if hasattr(exc, "format_message") else str(exc)
         _emit_error(
             json_output,
