@@ -3,20 +3,22 @@
 [![CI](https://github.com/StormForgeVentures/pifang/actions/workflows/ci.yml/badge.svg)](https://github.com/StormForgeVentures/pifang/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/StormForgeVentures/pifang/blob/main/LICENSE)
 
-Agent-first Python CLI for deterministic image, document, and media processing.
+One CLI for the media chores that usually end up as one-off scripts: resize and convert images, export every social/blog/podcast size from one photo, turn PDFs into markdown, trim and transcode video, transcribe audio. Plain Python, runs locally, no cloud.
 
-Pifang gives AI agents stable commands instead of one-off scripts: resize/crop/convert images, run named recipes, chain pipe DSL stages, batch-process folders with JSONL manifests, convert PDFs to markdown, edit video via ffmpeg, and transcribe with Faster-Whisper.
+Built so AI agents can drive it too: add `--json` and every command returns one JSON object with stable exit codes.
 
-## Built for agents
+## What it does
 
-Most CLIs tolerate automation; pifang is designed for it.
+| Domain | Commands |
+|---|---|
+| **Image** (core, Pillow) | `resize` `crop` `crop-square` `fit` `convert` `compress` `thumbnail` `strip-exif` `info` `analyze` · `remove-bg` `flatten-bg` `recolor` · recipes `avatar` `hero` `social-square` |
+| **Image packs** | `social-pack` (Instagram square/tall/story, Facebook, LinkedIn, X, YouTube…) · `blog-pack` (OG, hero, Medium, card) · `podcast-pack` (Apple/Spotify covers) · `video-cover-pack` · `custom-pack` (your own `WxH:slug` list) |
+| **Document** (`[doc]`) | `doc convert` PDF → markdown + images · `doc ingest` a folder → markdown + `ingest.jsonl` for RAG · `split` `merge` `extract-images` `ocr` `info` · `text chunk` `text frontmatter` · `meta index` `meta validate` |
+| **Video** (system ffmpeg) | `trim` `transcode` `resize` `concat` `to-gif` `extract-frames` `extract-audio` `normalize-audio` `captions` `info` · recipes `social-clip` `podcast-audio` |
+| **Transcribe** (`[transcribe]`) | `transcribe` any audio/video → `.transcript.json` + `.srt` (+ `.vtt`) with Faster-Whisper, local |
+| **Pipelines** | `pipe image "crop-square \| resize 512 \| to-webp q85"` · `pipe video "trim 0-30 \| resize 1080x1920 \| transcode"` · `batch run image\|video <command> ./folder/` with a JSONL manifest · custom YAML recipes |
 
-- **One output contract.** Add `--json` and stdout is exactly one JSON object — success or failure, no tracebacks to parse around. Without it you get plain text for the terminal. Progress and logs go to stderr.
-- **Errors that teach.** Every failure returns a stable `error_code`, a plain-language message, and a `recovery.hint` an agent can act on — down to the exact `pip install 'pifang[doc]'` to run.
-- **Meaningful exit codes.** `0` ok · `1` validation · `2` missing dependency · `3` processing · `4` partial batch. Scriptable without parsing a word.
-- **Strict by default.** Typos in flags, enum values, and pipe stages fail loudly with the valid options listed — never a silent fallback to something you didn't ask for.
-- **Deterministic and idempotent.** Same input, same output. Unchanged work is skipped and reported as skipped; `--dry-run` previews any mutation without touching disk.
-- **Discoverable.** `--help` at every level is the API doc, and `pifang doctor`, `pifang recipe list`, and `pifang setup` return JSON an agent can reason over before doing any work.
+Every mutating command supports `--dry-run` and skips unchanged work; `pifang doctor` tells you which optional pieces are installed.
 
 ## Install
 
@@ -82,6 +84,8 @@ exit=1
 ```
 
 ## For AI agents
+
+Most CLIs tolerate automation; pifang is designed for it. With `--json`, stdout is exactly one JSON object, success or failure; errors carry a stable `error_code`, a plain message and a `recovery.hint` down to the exact `pip install` to run. Exit codes mean something (`0` ok · `1` validation · `2` missing dependency · `3` processing · `4` partial batch). Typos in flags, enum values and pipe stages fail loudly with the valid options listed. Same input gives the same output; unchanged work is reported as skipped. `--help` at every level is the API doc.
 
 Paste **[docs/agents-blurb.md](https://github.com/StormForgeVentures/pifang/blob/main/docs/agents-blurb.md)** into your project’s `AGENTS.md` / `CLAUDE.md`.
 
